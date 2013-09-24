@@ -1,0 +1,13 @@
+<div class = "row">
+    <div class = "six columns">
+        <%= f.collection_select :user_id, User.all, :id, :email %>
+    </div>
+    
+    <div class = "four columns">
+    	<%= f.text_field :paid_amount, :placeholder => "Amount Paid" %>
+    	<%= f.hidden_field :_destroy %> 
+  	</div>
+  	<div class = "two columns">
+    	<%= link_to_function "Remove", "remove_fields(this)", :class => 'tiny radius button' %>
+  	</div>
+</div>

@@ -1,0 +1,42 @@
+<header id="header">
+	<nav class="top-bar">
+		<ul class = "left">
+			<li><%= link_to logo,root_path %></li>
+		</ul>
+		<ul class = "right">
+			<% if user_signed_in? %>
+			<li class="divider"></li>
+			<li>
+				<span id="user-label"> Logged in as :</span>
+				<span id="user-name"><%= current_user.name  %></span>
+			</li>
+			<li class="divider"></li>
+			<li>
+				<%= link_to "Sign out", destroy_user_session_path %>
+			</li>
+			<li class="divider"></li>
+			<li>
+				<%= link_to "My Account", edit_user_registration_path%>
+			</li>
+			<li class="divider"></li>
+			<% if current_user.has_role? :admin %>
+			<li>
+				<%= link_to('Admin', users_path ) %>
+			</li>
+			<li class="divider"></li>
+			<% end %>
+			<% else %>
+			<li class="divider"></li>
+			<li>
+				<%= link_to "Sign up!", new_user_registration_path %>
+			</li>
+			<li class="divider"></li>
+			<li>
+				<%= link_to "Sign in", new_user_session_path%>
+			</li>
+			<li class="divider"></li>
+			<% end %>
+			<li class="toggle-topbar"><a href="#"></a></li>
+		</ul>
+	</nav>
+</header>

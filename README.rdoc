@@ -1,0 +1,1 @@
+Madppl starting with a Rails app, has an authentication system set up so far. Thinking on how to grow this thing.

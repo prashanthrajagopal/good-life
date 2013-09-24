@@ -1,0 +1,126 @@
+select{
+  min-height:30px;
+}
+.container{
+	width:100%;
+}
+#user-label{
+  color:white;
+  font-weight: bold;
+  padding:10px;
+}
+#user-name{
+  color:lightgreen;
+  font-weight: bold;
+  padding:10px;
+}
+#copyright {
+  background: #3F3F3F;
+  color: white;
+  padding: 15px;
+  margin-top: 30px;
+}
+
+.side-bar{
+	 font-size:120%;
+	 padding:0px;
+   margin-top:1em;
+	 text-align:center;
+	 @include box-shadow(#111 2px 2px 10px);
+   ul{
+    margin:0;
+   }
+}
+.top-bar{
+  min-height: 50px;
+  margin:0;
+}
+
+/* Navigation section */
+
+/* Round corners*/
+@mixin rounded($radius: 10px) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -ms-border-radius: $radius;
+  -o-border-radius: $radius;
+  border-radius: $radius;
+}
+.sign-up, .sign-in,#orbit-slider{
+	position:relative;
+  padding:20px;
+  @include rounded(9px);
+  @include box-shadow(rgba(#ccc, 0.5) 0 0 25px, rgba(green, 0.2) 0 0 3px 1px inset);
+}
+
+#shared-links{
+  line-height: 18px;
+  margin-bottom: 10px;
+  text-decoration: underline;
+}
+
+@mixin flash() {
+  padding: 10px 15px 10px 40px;
+  margin: 10px 0;
+  font-weight: bold;
+  overflow: hidden;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+
+
+.error{
+  border: 1px solid #E9C59B;
+  background: #FFECCE url(/images/error.gif) 12px 12px no-repeat;
+  color: #E3302C;
+  @include flash;
+}
+
+.notice{
+  border: 1px solid #BBDBE0;
+  background: #ECF9FF url(/images/info.gif) 12px 12px no-repeat;
+  color: #0888C3;
+  @include flash;
+}
+
+.success{
+  border: 1px solid #BFDE84;
+  background: #EDFBD8 url(/images/success.gif) 12px 12px no-repeat;
+  color: #508600;
+  @include flash;
+}
+
+.warning{
+  border: 1px solid #E9C59B;
+  background: #FFECCE url(/images/warning.gif) 12px 12px no-repeat;
+  color: #E3302C;
+  @include flash;
+}
+.error{
+  border: 1px solid #E9C59B;
+  background: #FFECCE url(/images/error.gif) 12px 12px no-repeat;
+  color: #E3302C;
+  @include flash;
+}
+
+.notice{
+  border: 1px solid #BBDBE0;
+  background: #ECF9FF url(/images/info.gif) 12px 12px no-repeat;
+  color: #0888C3;
+  @include flash;
+}
+
+.success{
+  border: 1px solid #BFDE84;
+  background: #EDFBD8 url(/images/success.gif) 12px 12px no-repeat;
+  color: #508600;
+  @include flash;
+}
+
+.warning{
+  border: 1px solid #E9C59B;
+  background: #FFECCE url(/images/warning.gif) 12px 12px no-repeat;
+  color: #E3302C;
+  @include flash;
+}

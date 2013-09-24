@@ -1,0 +1,36 @@
+	<div  class = "nine columns">
+		<%= render 'devise/shared/slider' %>
+	</div>	
+	<div class = "three columns sign-up">
+
+		<h2>Sign up</h2>
+
+		<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+		<%= devise_error_messages! %>
+		<div><%= f.label :name %>
+			<%= f.text_field :name %>
+		</div>
+		<div><%= f.label :email %>
+		<%= f.email_field :email %>
+		</div>
+		<br />
+		<div><%= f.label :password %>
+			<%= f.password_field :password %>
+		</div>
+		<br />
+		<div><%= f.label :password_confirmation %>
+			<%= f.password_field :password_confirmation %>
+		</div>
+
+		<div><%= f.submit "Sign up", :class => "button" %></div>
+		<% end %>
+
+		<%= render "devise/shared/links" %>
+	</div>
+
+
+<style type="text/css">
+	label{
+		text-align: left;
+	}
+</style>

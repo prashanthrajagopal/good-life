@@ -1,0 +1,27 @@
+<h1>Listing your Bill(s)</h1>
+
+<div class = "row">
+	<div class = "twelve columns">
+		<% if @bills.blank? %>
+			<p>There are no bills yet. Would you to create one?</p>
+			<%= link_to "Create New Shared Bill", new_bill_path, :class => 'radius button' %>
+		<% else %>
+			<table>
+				<tr>
+					<th>Purpose</th>
+					<th>Bill Total</th>
+					<th>Show Details</th>
+					<th>Edit Bill</th>
+				</tr>
+				<% @bills.each do |bill| %>
+				  <tr>
+				    <td><%= bill.purpose %></td>
+				    <td><%= bill.total %></td>
+				    <td><%= link_to 'Show Details',{:action => 'show', :id => bill.id}, :class => 'tiny radius button' %></td>
+				    <td><%= link_to 'Edit', edit_bill_path(bill), :class => 'tiny radius button'  %></td>
+				  </tr>
+				<% end %>
+			</table>
+		<% end %>
+	</div>
+</div>

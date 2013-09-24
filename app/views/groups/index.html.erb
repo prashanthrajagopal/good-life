@@ -1,0 +1,29 @@
+
+<h1>Listing your Group(s)</h1>
+
+	<% @groups.each do |group| %>
+	<ul class = "three-up">
+		<li class = "group-name"><%= group.name %></li>
+		<li class = "group-name"><%= link_to 'Edit', edit_group_path(group), :class => "button small" %></li>
+		<li><%= link_to 'Destroy', group, method: :delete, data: { confirm: 'Are you sure?' }, :class => "button small" %></li>
+	</ul>
+	<% end %>
+<%= will_paginate @groups %>
+
+
+<style>
+#vertical-tabs{
+	margin-top:70px;
+}
+li{
+	list-style-type: none;
+	display: inline-block;
+}
+button{
+
+}
+.group-name{
+	font-weight: bold;
+	font-size: 20px;
+}
+</style>

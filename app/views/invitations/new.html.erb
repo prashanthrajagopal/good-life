@@ -1,0 +1,24 @@
+<%= semantic_form_for @invitation do |f| %>
+<% if @invitation.errors.any? %>
+    <div id="error-explanation">
+      <p><%= pluralize(@invitation.errors.count, "error") %> prohibited this invitation from being sent:</p>
+      <ul>
+        <% @invitation.errors.full_messages.each do |msg| %>
+          <li class = "error"><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+<% end %>
+<%= f.input :recipient_email, :placeholder => "Friend's Email", :label => false, :include_blank => false %>
+  <%= f.input :group_id, :collection => @groups, :as => 'select' %>
+    <%= f.submit "Invite", :class => "button" %>
+<% end %>
+
+<style>
+  li{
+    list-style-type: none;
+  }
+  label{
+    text-align:left;
+  }
+</style>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7 ]> <html class="ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]>    <html class="ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]>    <html class="ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--> <html lang="en"> <!--<![endif]-->
+<html>
+	<head>
+		<meta charset="utf-8" />
+		
+		<!-- Uncomment to make IE8 render like IE7 -->
+		<!-- <meta http-equiv="X-UA-Compatible" content="IE=7" /> -->
+		
+		<!-- Set the viewport width to device width for mobile -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		
+		<title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
+	  
+		<!-- Included CSS Files -->
+		<%= stylesheet_link_tag    "application" %>
+	  <!--[if IE 6]><%= stylesheet_link_tag 'ie6' %><![endif]-->
+	  <!--[if IE 7]><%= stylesheet_link_tag 'ie7' %><![endif]-->
+		
+		<!-- Included JS Files  -->
+		<%= javascript_include_tag "application" %>
+	  
+	  <%= csrf_meta_tags %>
+	</head>
+	<body>
+		<%= render "layouts/header"%>
+		<div class = "row">
+			<% if user_signed_in? %>
+				<div class = "two columns side-bar">
+					<ul class="nav-bar vertical">
+						<li class=""><a href="/">Home</a></li>
+						<% if current_user.invitation_limit > 0 %>	
+							<li>
+								<%= link_to 'Send Invitation', new_invitation_path %>
+							</li>
+						<% end %>
+						<li class="has-flyout">
+							<a href="#">Groups</a>
+							<a href="#" class="flyout-toggle"><span> </span></a>
+							<ul class="flyout">
+								<li><%= link_to "List your groups", groups_path %></li>
+								<li><%= link_to "Create New Group", new_group_path %></li>
+							</ul>
+						</li>
+						<li class="has-flyout">
+							<a href="#">Bills</a>
+							<a href="#" class="flyout-toggle"><span> </span></a>
+							<ul class="flyout">
+								<li><%= link_to "List your bills", bills_path %></li>
+								<li><%= link_to "Create New Shared Bill", new_bill_path%></li>
+							</ul>
+						</li>
+					</ul>
+				</div>	
+				<div class = "ten columns">
+					<%= render :partial => "layouts/flash", :locals => {:flash => flash} %>
+					<%=yield %>
+				</div>
+			<% else %>
+				<div class = "twelve columns">
+				<%= render :partial => "layouts/flash", :locals => {:flash => flash} %>
+				<%=yield %>
+				</div>
+			<% end %>
+		</div>
+		<%= render "layouts/footer"%>
+	</body>
+</html>

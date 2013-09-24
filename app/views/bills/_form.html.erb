@@ -1,0 +1,51 @@
+    <% if @bill.errors.any? %>
+        <div id="error-explanation">
+            <p><%= pluralize(@bill.errors.count, "error") %> prohibited this bill from being saved:</p>
+            <ul>
+                <% @bill.errors.full_messages.each do |msg| %>
+                    <li class = "error"><%= msg %></li>
+                <% end %>
+            </ul>
+        </div>
+    <% end %>
+<div class = "six columns offset-by-one">
+<h1> Create New Shared Bill </h1>
+<%= form_for @bill do |f| %>
+    <%= f.text_field :purpose, :placeholder => "Purpose" %>
+    <%= f.text_field :total, :placeholder => "Total" %>
+    <%= f.text_field :bill_date, :placeholder => "Bill Date", :class => "datepicker" %>
+    <%= f.label :select_group %>
+    <%= f.collection_select :group_id, @user.groups, :id, :name %><br/><br/>
+    <%= f.label :add_participants%>
+    <div class = "participants">
+        <%= f.fields_for :bill_splits do |bs| %>
+            <%= render 'bill_split_fields', :f => bs %>
+            <%= link_to_add_fields("Add Participant", f, :bill_splits) %>
+        <% end %>
+    </div>
+        <br/><br/><br/><br/>
+    <%= f.submit "Update", :class => "button" %>
+<% end %>
+</div>
+
+<script type="text/javascript">
+    function remove_fields(link){
+        $(link).closest("div").find("input[type=hidden]").val("1");
+        $(link).closest("div.row").hide();
+    };
+
+    function add_fields(link, association, content) {
+        var new_id = new Date().getTime();
+        var regexp = new RegExp("new_" + association, "g");
+        $(link).before(content.replace(regexp, new_id));
+    };
+
+    $(document).ready(function(){
+        $('.datepicker').datepicker({ minDate: '-1Y', 
+            maxDate: '0',
+            dateFormat : "dd MM yy",
+            buttonImageOnly : true
+        });
+    });
+    
+</script>

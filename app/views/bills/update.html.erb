@@ -1,0 +1,31 @@
+<h1>Details</h1>
+<div class="row">
+  <div class="twelve columns">
+    <table>
+      <tr>
+        <th>Purpose</th>
+        <td><%= @bill.purpose %></td>
+      </tr>
+      <tr>
+        <th>Bill Date</th>
+        <td><%= @bill.bill_date.strftime('%d-%m-%Y') %></td>
+      </tr>
+      <tr>
+        <th>Details</th>
+        <td>Bill details will come in here</td>
+      </tr>
+      <tr>
+        <th>Total</th>
+        <td><%= @bill.total %></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>
+          <%= link_to 'Edit', edit_bill_path(@bill), :class => 'tiny radius button' %>
+          <%= link_to 'Delete', @bill, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'tiny radius button' %>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+<%= link_to 'Back', bills_path %>

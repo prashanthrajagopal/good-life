@@ -1,0 +1,26 @@
+#!/usr/bin/ruby
+if ARGV[0] == "start"
+  processes = `ps aux | grep "unicorn_rails worker" | grep -v grep | grep -v master`.split("\n").count.to_i
+  if processes == 0
+    CONF_PATH = File.expand_path('../../config/',  __FILE__)
+    `unicorn_rails -c #{CONF_PATH}/unicorn.rb -D`
+    port = `cat #{CONF_PATH}/unicorn.rb | grep PORT_NUMBER`
+    worker_process = `cat #{CONF_PATH}/unicorn.rb | grep WORKER_PROCESSES`.split[1].to_i
+    processes = `ps aux | grep "unicorn_rails worker" | grep -v grep | grep -v master`.split("\n").count.to_i
+    if processes == worker_process
+      puts "UNICORN SUCCESSFULLY STARTED ON PORT #{port.split[1]} with "+processes.to_s+" worker processes. Click http://localhost:#{port.split[1]} to open in browser"
+    else
+    puts processes
+    puts worker_process
+    puts "UNICORN ERROR. PLEASE CHECK YOUR LOGS"
+    end
+  else
+    puts "unicorn already running"
+  end
+elsif ARGV[0] == "stop"
+  puts "Killing Unicorn"
+  `pkill -9 -f unicorn`
+else
+  puts "ERROR"
+  puts "Usage : ./script/unicorn start | stop"
+end

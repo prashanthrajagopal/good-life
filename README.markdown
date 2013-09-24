@@ -1,0 +1,1 @@
+This is a work in progress Ruby on Rails App for splitting bills among users. 

@@ -1,0 +1,46 @@
+<h1>Details</h1>
+<div class="row">
+	<div class="one columns offset-by-ten"> 
+		<%= link_to 'Edit', edit_bill_path(@bill), :class => 'radius button' %>
+	</div>
+	<div class="one columns"> 
+		<%= link_to 'Delete', @bill, meliod: :delete, data: { confirm: 'Are you sure?' }, :class => 'radius button' %> 
+	</div>
+</div>
+
+<div class="row bill-show">
+	<div class="two columns offset-by-one bill-show-inner-div"><strong> Purpose </strong></div>
+	<div class="seven columns bill-show-inner-div"> <%= @bill.purpose %> </div>
+	<div class="two columns"></div>
+</div>
+<div class="row bill-show">
+	<div class="two columns offset-by-one bill-show-inner-div"><strong> Bill Date </strong></div>
+	<div class="seven columns bill-show-inner-div"> <%= @bill.bill_date.strftime('%d-%m-%Y') %> </div>
+	<div class="two columns"></div>
+</div>
+<div class="row bill-show">
+	<div class="two columns offset-by-one bill-show-inner-div"><strong> Bill Created By </strong></div>
+	<div class="seven columns bill-show-inner-div"> <%= User.find(@bill.user_id).name %> </div>
+	<div class="two columns"></div>
+</div>
+<div class="row bill-show">
+	<div class="two columns offset-by-one bill-show-inner-div"><strong> Participants </strong></div>
+	<div class="seven columns bill-show-inner-div"> 
+		<div class = "row bill-show-breakup">
+			<% @bill.bill_splits.each do |bill_split| %> 
+			<div class = "five columns bill-show-breakup">
+				<%=  User.find(bill_split.user_id).email %>
+			</div>
+			<div class = "seven columns bill-show-breakup">
+				<%= bill_split.paid_amount %>
+			</div>
+			<% end %>
+		</div>
+	</div>
+	<div class="two columns"></div>
+</div>
+<div class="row bill-show">
+	<div class="two columns offset-by-one bill-show-inner-div"><strong> Total </strong></div>
+	<div class="seven columns bill-show-inner-div"> <%= @bill.total %> </div>
+	<div class="two columns"></div>
+</div>
