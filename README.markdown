@@ -1,1 +1,3 @@
-This is a work in progress Ruby on Rails App for splitting bills among users. 
+Split bills easily among your friends / family.
+
+This is a fully responsive and work in progress ROR app. 
